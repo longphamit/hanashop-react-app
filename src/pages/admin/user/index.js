@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { AdminHeader } from "../../../components/admin/header";
 import request from "../../../connects/axios_config";
-import { userUrl } from "../../../connects/url";
+import { userUrl, roleUrl } from "../../../connects/url";
 import {
   Avatar,
   Button,
@@ -41,7 +41,13 @@ const UserPage = () => {
   const [openDialogCreate, setOpenDialogCreate] = useState(false);
   const [openDialogUpdate, setOpenDialogUpdate] = useState(false);
   const [userSelected, setUserSelected] = useState("");
-  const [imageUpdate,setImageUpdate]=useState("")
+  const [imageUpdate, setImageUpdate] = useState("");
+  const [listRole, setListRole] = useState("");
+  const [formSearch, setFormSearch] = useState({
+    username: "",
+    fullname: "",
+    roleId: "",
+  });
   const [formCreate, setFormCreate] = useState({
     username: "",
     email: "",
@@ -50,8 +56,14 @@ const UserPage = () => {
     fullname: "",
     phone: "",
   });
+  const fetchRole = async () => {
+    const data = await request.get(roleUrl.FETCH);
+    console.log(data);
+    setListRole(data);
+  };
   useEffect(() => {
-    dispatch(getUser({ usernameExcept: login.response[0].username }));
+    fetchRole();
+    dispatch(getUser({}));
   }, []);
   const onsubmitCreate = () => {
     const formData = new FormData();
@@ -68,30 +80,66 @@ const UserPage = () => {
     formData.append("image", imageUpdate);
     formData.append(
       "inforUser",
-        new Blob([JSON.stringify(userSelected)], {
-          type: "application/json",
-        })
-    )
+      new Blob([JSON.stringify(userSelected)], {
+        type: "application/json",
+      })
+    );
     request.put(userUrl.UPDATE, formData);
   };
-  
+
   const onChooseImage = (e) => {
     console.log(e.target.files[0].name);
     setFormCreate({ ...formCreate, avatar: e.target.files[0] });
   };
   const onChooseImageUpdate = (e) => {
     console.log(e.target.files[0].name);
-    setImageUpdate(e.target.files[0])
+    setImageUpdate(e.target.files[0]);
   };
   return (
     <div>
       <AdminHeader />
       <Container>
+        <div style={{ display: "flex", margin: 20 }}>
+          <TextField label="Username" onChange={e=>setFormSearch({...formSearch,username:e.target.value})}/>
+          <TextField label="Fullname" onChange={e=>setFormSearch({...formSearch,fullname:e.target.value})} />
+          {listRole ? (
+            <RadioGroup
+              style={{ flexDirection: "row", margin: 10 }}
+              onChange={e=>setFormSearch({...formSearch,roleId:e.target.value})}
+            >
+              {listRole.map((r) => {
+                return (
+                  <FormControlLabel
+                    key={r.id}
+                    value={r.id}
+                    control={<Radio />}
+                    label={r.name}
+                  />
+                );
+              })}
+            </RadioGroup>
+          ) : null}
+          <Button
+            style={{ margin: 20 }}
+            variant="contained"
+            color="primary"
+            onClick={()=>dispatch(getUser(formSearch))}
+          >
+            Search
+          </Button>
+          <Button
+            style={{ margin: 20 }}
+            variant="contained"
+            color="primary"
+            onClick={()=>dispatch(getUser({}))}
+          >
+            Get All
+          </Button>
+        </div>
         <Button
-          style={{ margin: 20 }}
+          style={{ margin: 20,backgroundColor:"#07913a",color:"#ffff" }}
           onClick={() => setOpenDialogCreate(true)}
           variant="contained"
-          color="primary"
         >
           Create
         </Button>
@@ -341,9 +389,9 @@ const UserPage = () => {
             <TableBody>
               {data.response
                 ? data.response.map((user) => (
-                    <TableRow key={user.username}>
+                    <TableRow key={user.id}>
                       <TableCell align="center">
-                        <Avatar alt="Remy Sharp" src={user.avatar} />
+                        <Avatar alt={user.fullname} src={user.avatar} />
                       </TableCell>
                       <TableCell component="th" scope="row">
                         {user.username}

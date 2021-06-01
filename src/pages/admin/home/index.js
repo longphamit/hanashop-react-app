@@ -68,7 +68,7 @@ const HomeAdmin = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" className={classes.button}>
+                  <Button size="small" className={classes.button} onClick={()=>{redirect("/admin/product")}}>
                     Start
                   </Button>
                 </CardActions>

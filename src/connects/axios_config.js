@@ -5,11 +5,6 @@ const config={
         "Content-type":"Application/json"
     }
 }
-const configMultipart={
-  headers:{
-    'Content-type': 'multipart/form-data',
-  }
-}
 const handleResponse = (res) => {
   if(res.data){
     console.log(res.data.message)
@@ -21,13 +16,11 @@ const handleResponse = (res) => {
     }
   }
   return []
-  
 };
 
 const request = {
   get: (url) => axios.get(url).then(handleResponse).catch(err=>console.log(err)),
   post: (url, data) => axios.post(url, data, config).then(handleResponse),
-  post_mutipart:(url,data)=>axios.post(url,data,configMultipart).then(handleResponse),
   put: (url, data) => axios.put(url, data, config).then(handleResponse),
   delete: (url) => axios.delete(url).then(handleResponse),
 };

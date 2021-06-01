@@ -1,7 +1,6 @@
 import { actionType } from "../constant/index"
 const initiaState={
-    categories:[],
-    totalPage:null
+    data:[],
 }
 const category=(state=initiaState,action)=>{
     const {type,payload}=action;
@@ -9,29 +8,25 @@ const category=(state=initiaState,action)=>{
         case actionType.FETCH_CATEGORY:{
             return{
                 ...state,
-                categories:payload.results,
-                totalPage:payload.total
+                data:payload.results,
             }
         }
         case actionType.ADD_CATEGORY:{
             return{
                 ...state,
-                categories:payload.results,
-                totalPage:payload.total,
+                data:payload.results,
             };
         };
         case actionType.UPDATE_CATEGORY:{
             return{
                 ...state,
-                categories:payload.results,
-                totalPage:payload.total,
+                data:payload.results,
             };
         };
         case actionType.REMOVE_CATEGORY:{
             return{
                 ...state,
-                categories:payload.results,
-                totalPage:payload.total,
+                data:payload.results,
             };
         };
         default:{

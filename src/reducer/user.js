@@ -6,6 +6,7 @@ const user=(state=initState,action)=>{
     const {type,payload}=action;
     switch(type){
         case actionType.FETCH_USER:{
+            console.log(payload);    
             return {
                 ...state,
             }
