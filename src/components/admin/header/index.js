@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AdminHeader = () => {
+const AdminHeader = () => {
   const classes = useStyles();
   const history = useHistory()
   const loginButton = () => {
@@ -66,7 +66,7 @@ export const AdminHeader = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["DashBoard", "User Manage", "Product Manage", "Category Manage"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />
           </ListItem>
@@ -107,8 +107,8 @@ export const AdminHeader = () => {
               </SwipeableDrawer>
             </React.Fragment>
 
-            <Typography variant="h6" className={classes.title}>
-              News
+            <Typography onClick={() => history.replace("/admin")} variant="h6" className={classes.title}>
+              Dash board
             </Typography>
                 <Button onClick={()=>loginButton()} variant="contained" color="secondary" >Login</Button>       
           </Toolbar>
@@ -117,3 +117,4 @@ export const AdminHeader = () => {
     </div>
   );
 };
+export default AdminHeader

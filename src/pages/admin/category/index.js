@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { AdminHeader } from "../../../components/admin/header";
+import AdminHeader from "../../../components/admin/header";
 import { Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles({

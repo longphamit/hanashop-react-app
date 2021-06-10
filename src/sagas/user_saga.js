@@ -32,7 +32,6 @@ function* createUser(action) {
 }
 function* fetchUsers(action) {
   try {
-    yield console.log("hello saga");
     yield put(showLoading());
     const res = yield call(
       request.post,
