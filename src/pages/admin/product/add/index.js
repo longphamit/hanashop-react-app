@@ -11,9 +11,8 @@ import {
 import { Carousel, CarouselItem, Button, ThemeProvider } from "react-bootstrap";
 import request from "../../../../connects/axios_config";
 import { brandUrl, categoryUrl, productUrl } from "../../../../connects/url";
-import Editor from 'ckeditor5-custom-build/build/ckeditor';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-
+import Editor from "ckeditor5-custom-build/build/ckeditor";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 
 const AddProduct = () => {
   const [urlImages, setUrlImages] = useState([]);
@@ -221,43 +220,68 @@ const AddProduct = () => {
             </div>
           </div>
           <CKEditor
-                    editor={ Editor }
-                    config={{
-                      ckfinder: {
-                        // Upload the images to the server using the CKFinder QuickUpload command.
-                        uploadUrl: 'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
-                    },       
-                      toolbar: [
-                        'heading', '|',
-        'fontfamily', 'fontsize', '|',
-        'alignment', '|',
-        'fontColor', 'fontBackgroundColor', '|',
-        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
-        'link', '|',
-        'outdent', 'indent', '|',
-        'bulletedList', 'numberedList', 'todoList', '|',
-        'code', 'codeBlock', '|',
-        'insertTable', '|',
-        'uploadImage', 'blockQuote', '|',
-        'undo', 'redo'
-                      ]
-                    }}  
-                    data=""
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                />
+            editor={Editor}
+            config={{
+              ckfinder: {
+                // Upload the images to the server using the CKFinder QuickUpload command.
+                uploadUrl: "http://localhost:8181/api/product/ckfinder",
+              },
+              toolbar: [
+                "heading",
+                "|",
+                "fontfamily",
+                "fontsize",
+                "|",
+                "alignment",
+                "|",
+                "fontColor",
+                "fontBackgroundColor",
+                "|",
+                "bold",
+                "italic",
+                "strikethrough",
+                "underline",
+                "subscript",
+                "superscript",
+                "|",
+                "link",
+                "|",
+                "outdent",
+                "indent",
+                "|",
+                "bulletedList",
+                "numberedList",
+                "todoList",
+                "|",
+                "code",
+                "codeBlock",
+                "|",
+                "insertTable",
+                "|",
+                "uploadImage",
+                "blockQuote",
+                "|",
+                "undo",
+                "redo",
+              ],
+            }}
+            data=""
+            onReady={(editor) => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor is ready to use!", editor);
+            }}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              console.log(data)
+              setFormCreate({...formCreate,description:data})
+            }}
+            onBlur={(event, editor) => {
+              console.log("Blur.", editor);
+            }}
+            onFocus={(event, editor) => {
+              console.log("Focus.", editor);
+            }}
+          />
           <div>
             <Button
               variant="success"
