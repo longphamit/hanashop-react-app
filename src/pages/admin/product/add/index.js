@@ -25,8 +25,8 @@ const AddProduct = () => {
     price: "",
     sale: "",
     quantity: "",
-    brand: "",
-    category: "",
+    brandId: "",
+    categoryId: "",
     description: "",
   });
 
@@ -168,7 +168,7 @@ const AddProduct = () => {
                     id="demo-controlled-open-select-label"
                     value={formCreate.brand}
                     onChange={(e) =>
-                      setFormCreate({ ...formCreate, brand: e.target.value })
+                      setFormCreate({ ...formCreate, brandId: e.target.value })
                     }
                     style={{ width: 100 }}
                   >
@@ -198,7 +198,7 @@ const AddProduct = () => {
                     id="demo-controlled-open-select-label"
                     value={formCreate.category}
                     onChange={(e) =>
-                      setFormCreate({ ...formCreate, category: e.target.value })
+                      setFormCreate({ ...formCreate, categoryId: e.target.value })
                     }
                     style={{ width: 200 }}
                   >

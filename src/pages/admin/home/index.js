@@ -98,7 +98,7 @@ const HomeAdmin = () => {
               <Card className={classes.root}>
                 <CardContent>
                   <Typography variant="h5" component="h2">
-                    Category Management
+                    Blog Category
                   </Typography>
                   <Typography className={classes.pos} color="textSecondary">
                     3 categories

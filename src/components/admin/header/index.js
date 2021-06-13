@@ -66,11 +66,19 @@ const AdminHeader = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["DashBoard", "User Manage", "Product Manage", "Category Manage"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
+        
+         <ListItem button  onClick={()=>{history.push("/admin")}}>
+            <ListItemText primary="DashBoard" />
           </ListItem>
-        ))}
+          <ListItem button onClick={()=>{history.push("/admin/user")}}>
+            <ListItemText  primary="User Manage" />
+          </ListItem>
+          <ListItem button  onClick={()=>{history.push("/admin/product")}}>
+            <ListItemText primary="Product Manage" />
+          </ListItem>
+          <ListItem button  onClick={()=>{history.push("/admin")}}>
+            <ListItemText primary="Category Manage" />
+          </ListItem>
       </List>
       <Divider />
       <List>

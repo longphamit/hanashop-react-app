@@ -7,6 +7,7 @@ import LoginAdmin from "./pages/admin/login/index";
 import HomeAdmin from "./pages/admin/home/index";
 import ProductAdmin from "./pages/admin/product/index";
 import AddProduct from "./pages/admin/product/add/index"
+import ProductDetail from "./pages/admin/product/detail/index"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'semantic-ui-css/semantic.min.css'
 import {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/admin/user" exact={true} component={UserPage} />
           <Route path="/admin/product" exact={true} component={ProductAdmin} />
           <Route path="/admin/product/add" exact={true} component={AddProduct}/>
+          <Route path="/admin/product/detail" exact={true} component={ProductDetail}/>
           <Route path="/admin/login" exact={true} component={LoginAdmin} />
         </Switch>
     </Router>

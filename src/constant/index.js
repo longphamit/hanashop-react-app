@@ -19,3 +19,13 @@ export const actionType={
     HIDE_LOADING:"HIDE_LOADING",
     SHOW_LOADING:"SHOW_LOADING"
 }
+export const convertStatusProduct=(status)=>{
+    switch(status){
+        case "STATUS_ACTIVE":{
+            return "Active"
+        }
+        case "STATUS_INACTIVE":{
+            return "InActive"
+        }
+    }
+}
