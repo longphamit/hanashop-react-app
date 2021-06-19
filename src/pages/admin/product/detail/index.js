@@ -1,5 +1,4 @@
 import React, { Component, useRef, useState, useEffect } from "react";
-import AdminHeader from "../../../../components/admin/header/index";
 import {
   Container,
   FormControl,
@@ -14,8 +13,8 @@ import request from "../../../../connects/axios_config";
 import { brandUrl, categoryUrl, productUrl } from "../../../../connects/url";
 import Editor from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import { useHistory } from "react-router-dom";
-const ProductDetail = (productProp) => {
+import { useHistory,useLocation } from "react-router-dom";
+const ProductDetail = () => {
   const history = useHistory();
   const [urlImages, setUrlImages] = useState([]);
   const [productDetail, setProductDetail] = useState([]);
@@ -23,6 +22,7 @@ const ProductDetail = (productProp) => {
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState("");
   const [brands, setBrands] = useState("");
+  const location=useLocation();
   const [formCreate, setFormCreate] = useState({
     name: "",
     price: "",
@@ -32,7 +32,6 @@ const ProductDetail = (productProp) => {
     categoryId: "",
     description: "",
   });
-
   const getBrands = async () => {
     const data = await request.get(brandUrl.FETCH);
     console.log(data);
@@ -44,8 +43,8 @@ const ProductDetail = (productProp) => {
     setCategories(data);
   };
   useEffect(() => {
-    console.log(productProp.location.state.product);
-    setProductDetail(productProp.location.state.product);
+    console.log(location.state.product);
+    setProductDetail(location.state.product);
     getBrands();
     getCategories();
   }, []);
@@ -53,7 +52,6 @@ const ProductDetail = (productProp) => {
   return (
     <>
       <div style={{ flex: 1 }}>
-        <AdminHeader />
         <Container>
           <div style={{ padding: 50, display: "flex", alignSelf: "center" }}>
             <div>

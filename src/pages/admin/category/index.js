@@ -7,7 +7,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import AdminHeader from "../../../components/admin/header";
 import { Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -36,7 +35,6 @@ const CategoryPage = () => {
   }, [])
   return (
     <div>
-      <AdminHeader />
       <Container>
         <Button style={{ margin: 20 }} onClick={()=>setOpenDialogCreate(true)} variant="contained" color="primary">
           Create

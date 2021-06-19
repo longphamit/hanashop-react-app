@@ -7,7 +7,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import AdminHeader from "../../../components/admin/header";
 import request from "../../../connects/axios_config";
 import { userUrl, roleUrl } from "../../../connects/url";
 import {
@@ -97,7 +96,6 @@ const UserPage = () => {
   };
   return (
     <div>
-      <AdminHeader />
       <Container>
         <div style={{ display: "flex", margin: 20 }}>
           <TextField label="Username" onChange={e=>setFormSearch({...formSearch,username:e.target.value})}/>

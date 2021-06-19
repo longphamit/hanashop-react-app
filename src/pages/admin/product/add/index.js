@@ -1,5 +1,4 @@
 import React, { Component, useRef, useState, useEffect } from "react";
-import AdminHeader from "../../../../components/admin/header/index";
 import {
   Container,
   Grid,
@@ -78,7 +77,6 @@ const AddProduct = () => {
   return (
     <>
       <div style={{ flex: 1 }}>
-        <AdminHeader />
         <Container>
           <div style={{ padding: 50, display: "flex", alignSelf: "center" }}>
             <div>

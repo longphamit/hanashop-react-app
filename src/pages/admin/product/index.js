@@ -7,7 +7,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import AdminHeader from "../../../components/admin/header";
 import request from "../../../connects/axios_config";
 import { productUrl, brandUrl, categoryUrl } from "../../../connects/url";
 import { useHistory } from "react-router-dom";
@@ -67,7 +66,6 @@ const ProductAdmin = () => {
   }, []);
   return (
     <div>
-      <AdminHeader />
       <Container>
         <Box style={{ display: "flex", margin: 20 }}>
           <TextField label="Id" variant="outlined" style={{ margin: 20 }} />
